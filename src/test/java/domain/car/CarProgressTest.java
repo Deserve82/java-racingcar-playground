@@ -1,8 +1,9 @@
-package domain;
+package domain.car;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
+import domain.car.CarProgress;
 import org.junit.jupiter.api.Test;
 
 public class CarProgressTest {

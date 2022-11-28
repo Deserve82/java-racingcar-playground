@@ -1,8 +1,9 @@
-package domain;
+package domain.car;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import domain.car.CarName;
 import java.security.InvalidParameterException;
 import org.junit.jupiter.api.Test;
 

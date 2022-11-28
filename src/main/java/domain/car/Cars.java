@@ -1,4 +1,4 @@
-package domain;
+package domain.car;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,6 +22,14 @@ public class Cars {
 
     public List<Car> getCarList() {
         return carList;
+    }
+
+    public int getSize() {
+        return carList.size();
+    }
+
+    public Car getCar(int index) {
+        return carList.get(index);
     }
 
     public List<Car> getHighestProgressCars() {
