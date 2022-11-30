@@ -6,15 +6,12 @@ import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import ui.OutputView;
 
 public class RacingGame {
 
     private int count;
     private final Random random;
     private final Cars cars;
-
-    private final OutputView outputView = new OutputView();
 
     public RacingGame(int count, List<String> carNames) {
         if (count < 1) {
@@ -23,7 +20,7 @@ public class RacingGame {
 
         this.random = new Random();
         this.count = count;
-        this.cars = new Cars(getCars(carNames));
+        this.cars = new Cars(parseCarNamesToCarList(carNames));
     }
 
     public RacingGame(int count, Cars cars) {
@@ -32,7 +29,7 @@ public class RacingGame {
         this.random = new Random();
     }
 
-    private List<Car> getCars(List<String> names) {
+    private List<Car> parseCarNamesToCarList(List<String> names) {
         List<Car> cars = new ArrayList<>();
         for (String name : names) {
             cars.add(new Car(name));
@@ -44,25 +41,19 @@ public class RacingGame {
         return cars.getHighestProgressCars();
     }
 
-    public int getCount() {
-        return count;
+    public Cars getCars() {
+        return this.cars;
     }
 
     public void play() {
-        if (count < 1) {
-            throw new RuntimeException("더 이상 플레이 할 수 없습니다.");
+        count--;
+        for (int i = 0; i < cars.getSize(); i++) {
+            cars.increaseProgress(i, getRandomNumber());
         }
+    }
 
-        outputView.printResult();
-        while (count > 0) {
-            for (int i = 0; i < cars.getSize(); i++) {
-                cars.increaseProgress(i, getRandomNumber());
-                outputView.printProgress(cars.getCar(i));
-            }
-            count--;
-            outputView.printNewLine();
-        }
-        outputView.printWinner(getWinners());
+    public boolean isEnd() {
+        return count == 0;
     }
 
     private int getRandomNumber() {

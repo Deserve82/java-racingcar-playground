@@ -24,4 +24,12 @@ public class CarProgress {
     public int getProgress() {
         return progress;
     }
+
+    public boolean isSame(CarProgress progress) {
+        return this.progress == progress.getProgress();
+    }
+
+    public boolean isBigger(CarProgress progress){
+        return this.progress > progress.getProgress();
+    }
 }

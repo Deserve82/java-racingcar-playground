@@ -43,6 +43,6 @@ class RacingGameTest {
 
         game.play();
 
-        assertThat(game.getCount()).isEqualTo(0);
+        assertThat(game.isEnd()).isTrue();
     }
 }

@@ -6,25 +6,13 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import domain.car.Car;
 import domain.car.Cars;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
 class CarsTest {
-
-    private Car a;
-    private Car b;
-    private Car c;
-    private Cars cars;
-
-    @BeforeEach
-    void init() {
-        a = new Car("a");
-        b = new Car("b");
-        c = new Car("c");
-        cars = new Cars(Arrays.asList(a, b, c));
-    }
 
     @Test
     void test_create_cars() {
@@ -42,7 +30,8 @@ class CarsTest {
 
     @Test
     void test_get_highest_progress_test() {
-        a.increaseProgress(5);
+        Car a = new Car("a", 1);
+        Cars cars = new Cars(Collections.singletonList(a));
 
         List<Car> highestCars = cars.getHighestProgressCars();
 
@@ -52,8 +41,9 @@ class CarsTest {
 
     @Test
     void test_get_highest_progress_test_with_more_than_two() {
-        a.increaseProgress(5);
-        b.increaseProgress(4);
+        Car a = new Car("a", 1);
+        Car b = new Car("b", 1);
+        Cars cars = new Cars(Arrays.asList(a, b));
 
         List<Car> highestCars = cars.getHighestProgressCars();
 
@@ -62,9 +52,9 @@ class CarsTest {
 
     @Test
     void test_get_highest_progress_test_with_more_than_two_2() {
-        b.increaseProgress(4);
-        b.increaseProgress(7);
-        c.increaseProgress(4);
+        Car a = new Car("a", 0);
+        Car b = new Car("b", 1);
+        Cars cars = new Cars(Arrays.asList(a, b));
 
         List<Car> highestCars = cars.getHighestProgressCars();
 
@@ -74,6 +64,11 @@ class CarsTest {
 
     @Test
     void test_increase_progress_with_index() {
+        Car a = new Car("a", 0);
+        Car b = new Car("b", 0);
+        Car c = new Car("c", 0);
+        Cars cars = new Cars(Arrays.asList(a, b, c));
+
         cars.increaseProgress(0, 8);
         cars.increaseProgress(1, 2);
         cars.increaseProgress(1, 1);

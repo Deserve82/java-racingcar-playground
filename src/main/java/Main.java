@@ -15,7 +15,12 @@ public class Main {
         outputView.printTypeCount();
         int count = inputView.getCount();
 
+        outputView.printResult();
         RacingGame game = new RacingGame(count, cars);
-        game.play();
+        while (!game.isEnd()) {
+            game.play();
+            outputView.printProgress(game.getCars());
+        }
+        outputView.printWinner(game.getWinners());
     }
 }

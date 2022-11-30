@@ -1,6 +1,7 @@
 package ui;
 
 import domain.car.Car;
+import domain.car.Cars;
 import java.util.List;
 
 public class OutputView {
@@ -13,23 +14,23 @@ public class OutputView {
         System.out.println("시도할 회수는 몇회인가요?");
     }
 
-    public void printProgress(Car car) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(car.getName()).append(" : ");
+    public void printProgress(Cars cars) {
+        for(Car car : cars.getCarList()) {
+            StringBuilder sb = new StringBuilder();
+            sb.append(car.getName()).append(" : ");
 
-        for (int i = 0; i < car.getProgress(); i++) {
-            sb.append("-");
+            for (int i = 0; i < car.getProgress(); i++) {
+                sb.append("-");
+            }
+            System.out.println(sb);
         }
-        System.out.println(sb);
+        System.out.println();
     }
 
     public void printResult() {
         System.out.println("실행 결과");
     }
 
-    public void printNewLine() {
-        System.out.println();
-    }
 
     public void printWinner(List<Car> cars) {
         StringBuilder sb = new StringBuilder();

@@ -20,6 +20,15 @@ public class Cars {
         carList.add(car);
     }
 
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        for (Car car : carList) {
+            builder.append(car.getName()).append(" : ").append(car.getProgress());
+        }
+        return builder.toString();
+    }
+
     public List<Car> getCarList() {
         return carList;
     }
@@ -28,20 +37,15 @@ public class Cars {
         return carList.size();
     }
 
-    public Car getCar(int index) {
-        return carList.get(index);
-    }
-
     public List<Car> getHighestProgressCars() {
         List<Car> cars = new ArrayList<>();
-        int pivot = 0;
+        CarProgress pivot = new CarProgress();
 
         for (Car car : carList) {
-            int progress = car.getProgress();
-            if (progress > pivot) {
+            if (car.isBigger(pivot)) {
                 cars = new ArrayList<>(Collections.singletonList(car));
-                pivot = progress;
-            } else if (progress == pivot) {
+                pivot = car.getCarProgress();
+            } else if (car.isSame(pivot)) {
                 cars.add(car);
             }
         }
